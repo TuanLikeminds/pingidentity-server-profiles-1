@@ -1,6 +1,9 @@
 #!/usr/bin/env sh
 echo Hello from the baseline server profile 182-pre-setup.sh.pre hook!
+
 echo "====> USER_BASE_DN=[${USER_BASE_DN}]"
+echo "REMOVING THE OLD TOPOLOGY FILE"
+rm -rf "${TOPOLOGY_FILE}"
 computedDomain=$(echo ${USER_BASE_DN} | sed 's/^dc=\([^,]*\).*/\1/' )
 computedOrg=$(echo ${USER_BASE_DN} | sed 's/^o=\([^,]*\).*/\1/' )
 
