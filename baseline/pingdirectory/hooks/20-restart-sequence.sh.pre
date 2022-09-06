@@ -1,6 +1,7 @@
 #!/usr/bin/env sh
 echo Hello from the baseline server profile 20-restart-sequence.sh.pre hook!
 echo "====> USER_BASE_DN=[${USER_BASE_DN}]"
+rm -rf "${TOPOLOGY_FILE}"
 computedDomain=$(echo ${USER_BASE_DN} | sed 's/^dc=\([^,]*\).*/\1/' )
 computedOrg=$(echo ${USER_BASE_DN} | sed 's/^o=\([^,]*\).*/\1/' )
 
