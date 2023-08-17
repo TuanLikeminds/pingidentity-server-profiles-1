@@ -530,8 +530,7 @@ waitUntilLdapUp() {
                     --terse \
                     --suppressPropertiesFileComment \
                     --hostname "telus-pingdirectory-0.telus-pingdirectory-cluster.default.svc.cluster.local" \
-                    --port "${2}" \
-                    --useSSL \
+                    --port "1389" \
                     --trustAll \
                     --baseDN "${3}" \
                     --scope base "(&)" 1.1 2> /dev/null && break
@@ -543,8 +542,7 @@ waitUntilLdapUp() {
                 --terse \
                 --suppressPropertiesFileComment \
                 --hostname "telus-pingdirectory-0.telus-pingdirectory-cluster.default.svc.cluster.local" \
-                --port "${2}" \
-                --useSSL \
+                --port "1389" \
                 --trustAll \
                 --baseDN "${3}" \
                 --scope base "(&)" 1.1 2> /dev/null
