@@ -526,15 +526,28 @@ waitUntilLdapUp() {
                 # the entropy is sufficient to attempt a full on TLS handshake
                 # this is the better option to test that the server indeed serves data
                 # we're more lenient on timeout than in normal mode
-                timeout "${LDAPSEARCH_TIMEOUT_SECONDS}" ldapsearch --terse --suppressPropertiesFileComment --hostname "likeminds-pingdirectory-0.likeminds-pingdirectory-cluster" --port "${2}" --useSSL --trustAll --baseDN "${3}" --scope base "(&)" 1.1 2> /dev/null && break
+                timeout "${LDAPSEARCH_TIMEOUT_SECONDS}" ldapsearch \
+                    --terse \
+                    --suppressPropertiesFileComment \
+                    --hostname "${1}" \
+                    --port "1389" \
+                    --useSSL \
+                    --trustAll \
+                    --baseDN "${3}" \
+                    --scope base "(&)" 1.1 2> /dev/null && break
                 # we avoid using a random if we don't have to in FIPS mode
-                return 0
                 sleep 15
             fi
         else
-            timeout "${LDAPSEARCH_TIMEOUT_SECONDS}" ldapsearch --terse --suppressPropertiesFileComment --hostname "likeminds-pingdirectory-0.likeminds-pingdirectory-cluster" --port "${2}" --useSSL --trustAll --baseDN "${3}" --scope base "(&)" 1.1 2> /dev/null
-            # test ${?} -eq 0 && return 0
-            return 0
+            timeout "${LDAPSEARCH_TIMEOUT_SECONDS}" ldapsearch \
+                --terse \
+                --suppressPropertiesFileComment \
+                --hostname "${1}" \
+                --port "1389" \
+                --trustAll \
+                --baseDN "${3}" \
+                --scope base "(&)" 1.1 2> /dev/null
+            test ${?} -eq 0 && return 0
             sleep_at_most 15
         fi
 
