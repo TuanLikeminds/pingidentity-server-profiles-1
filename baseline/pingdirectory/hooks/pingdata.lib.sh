@@ -529,8 +529,9 @@ waitUntilLdapUp() {
                 timeout "${LDAPSEARCH_TIMEOUT_SECONDS}" ldapsearch \
                     --terse \
                     --suppressPropertiesFileComment \
-                    --hostname "telus-pingdirectory-0.telus-pingdirectory-cluster.default.svc.cluster.local" \
-                    --port "1389" \
+                    --hostname "${1}" \
+                    --port "${2}" \
+                    --useSSL \
                     --trustAll \
                     --baseDN "${3}" \
                     --scope base "(&)" 1.1 2> /dev/null && break
@@ -541,8 +542,9 @@ waitUntilLdapUp() {
             timeout "${LDAPSEARCH_TIMEOUT_SECONDS}" ldapsearch \
                 --terse \
                 --suppressPropertiesFileComment \
-                --hostname "telus-pingdirectory-0.telus-pingdirectory-cluster.default.svc.cluster.local" \
-                --port "1389" \
+                --hostname "${1}" \
+                --port "${2}" \
+                --useSSL \
                 --trustAll \
                 --baseDN "${3}" \
                 --scope base "(&)" 1.1 2> /dev/null
